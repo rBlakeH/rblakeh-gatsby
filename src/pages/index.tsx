@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, {useState} from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -13,14 +13,15 @@ import { Experience } from "../components/Experience/Expreience"
 import { ExperienceContent } from "../components/Experience/ExperienceContent"
 
 const IndexPage = () => {
+
   return (
-    <CenterContent>
-      <h1>HELLO World IAM RUNNING</h1>
-      {/* <Content></Content> */}
-      {/* {experienceData.map(x => <Experience  job={x}/>)} */}
-      {/* <Experience job={job1} ></Experience> */}
-      <ExperienceContent />
-    </CenterContent>
+    <>
+      <CenterContent>
+        <MatterHeader/>
+        <h1>RblakeH.com</h1>
+        <ExperienceContent />
+      </CenterContent>
+    </>
   )
 }
 export default IndexPage

@@ -10,6 +10,7 @@ type props = {
 export const Content = (Props: props) => {
     const contentDiv = css`
     display: inline-block;
+    border: 5px solid red;
     width: 50%;
     @media (max-width: 481px){
         display: block;
@@ -18,8 +19,8 @@ export const Content = (Props: props) => {
     `
     return (
         <>
-            <div style={{ background: 'pink' }} className={contentDiv}>{Props.right}</div>
-            <div className={contentDiv} style={{ background: 'pink' }}>{Props.left}</div>
+            <div className={contentDiv}>{Props.right}</div>
+            <div className={contentDiv}>{Props.left}</div>
         </>
     )
 }
