@@ -13,14 +13,14 @@ import { Experience } from "../components/Experience/Expreience"
 import { ExperienceContent } from "../components/Experience/ExperienceContent"
 
 const IndexPage = () => {
-   return (
-      <CenterContent>
-        <h1>HELLO World IAM RUNNING</h1>
-        {/* <Content></Content> */}
-        {/* {experienceData.map(x => <Experience  job={x}/>)} */}
-        {/* <Experience job={job1} ></Experience> */}
-        <ExperienceContent/>
-      </CenterContent>
-    )
+  return (
+    <CenterContent>
+      <h1>HELLO World IAM RUNNING</h1>
+      {/* <Content></Content> */}
+      {/* {experienceData.map(x => <Experience  job={x}/>)} */}
+      {/* <Experience job={job1} ></Experience> */}
+      <ExperienceContent />
+    </CenterContent>
+  )
 }
 export default IndexPage
