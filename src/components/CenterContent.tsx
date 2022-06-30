@@ -1,8 +1,9 @@
 import React, { Component } from "react"
 import { css, cx } from '@emotion/css'
 
-type props ={
+type Props ={
   children: any
+  ref: any
 }
 
 const center = css`
@@ -22,10 +23,10 @@ width: 100%;
   width: 1436px;
 }
 `
-export const CenterContent = (Props: props) => {
-  const {children} = Props
+export const CenterContent = (props: Props) => {
+  const {children, ref} = props
   return (
-    <div className={center}>
+    <div className={center} ref={ref}>
       {children}
     </div>
   )

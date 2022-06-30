@@ -1,39 +1,48 @@
 import React, { Component, useEffect, useRef, useState } from 'react'
 import { Engine, Render, Bodies, World } from 'matter-js'
 
-const MatterHeader = () => {
+type Props ={
+  ref: any
+}
+
+const MatterHeader = (props: Props) => {
   const scene = useRef()
+  const contentRef = useRef(null)
   const isPressed = useRef(false)
   const engine = useRef(Engine.create())
 
-  const [width, setWidth] = useState(123)
+  const [width, setWidth] = useState(0)
+
+
 
   useEffect(() => {
-    function handleResize() {
-      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-      if(window.matchMedia("(min-width: 416px)")){
-        setWidth(416)
-       } if(window.matchMedia("(min-width: 704px)")){
-        setWidth(704)
-       } if(window.matchMedia("(min-width: 1024px)")){
-        setWidth(1024)
-       }  if(window.matchMedia("(min-width: 1436px)")){
-        setWidth(1436)
-       } 
-       console.log(width);
-       
-    }    
-    window.addEventListener('resize', handleResize)
+    // function handleResize() {
+    //   // if (window.matchMedia("(min-width: 1436px)")) {
+    //   //   setWidth(1436)
+    //   // } else if (window.matchMedia("(min-width: 960px)")) {
+    //   //   setWidth(960)
+    //   // } else if (window.matchMedia("(min-width: 704px)")) {
+    //   //   setWidth(704)
+    //   // } else if (window.matchMedia("(min-width: 416px)")) {
+    //   //   setWidth(416)
+    //   // } else{
+    //   //   setWidth(document.body.clientWidth)
+    //   // }
+    //   setWidth(props.ref.clientWidth)
+    //   console.log(width)
+    // }
+    // handleResize()
+    // window.addEventListener('resize', handleResize)
 
     const cw = document.body.clientWidth
-    const ch = 100
+    const ch = 200
 
     const render = Render.create({
       element: scene.current,
       engine: engine.current,
       options: {
-        width: width,
-        height: ch,
+        width: 1000,
+        height: 200,
         wireframes: false,
         background: 'black'
       }
@@ -51,6 +60,7 @@ const MatterHeader = () => {
 
     return () => {
       Render.stop(render)
+      Render.setPixelRatio(render, 'auto')
       World.clear(engine.current.world)
       Engine.clear(engine.current)
       render.canvas.remove()
@@ -58,7 +68,7 @@ const MatterHeader = () => {
       render.context = null
       render.textures = {}
     }
-  }, [])
+  }, [props.ref])
 
   const handleDown = () => {
     isPressed.current = true
