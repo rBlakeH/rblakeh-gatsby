@@ -1,66 +1,62 @@
-import React, { Component, useEffect, useRef, useState } from 'react'
-import { Engine, Render, Bodies, World } from 'matter-js'
+import React, { useEffect, useRef, useState } from "react"
+import { Body, Engine, Render, Bodies, World } from "matter-js"
+import { css } from "@emotion/css"
 
-type Props ={
-  ref: any
-}
+const STATIC_DENSITY = 15
 
-const MatterHeader = (props: Props) => {
-  const scene = useRef()
-  const contentRef = useRef(null)
-  const isPressed = useRef(false)
-  const engine = useRef(Engine.create())
+const MatterHeader = () => {
+  const container = useRef(null)
+  const canvas = useRef(null)
 
-  const [width, setWidth] = useState(0)
+  const [isPressed, setPressed] = useState(false)
+  const [engine, setEngine] = useState()
+  const [constraints, setConstraints] = useState()
+  const [scene, setScene] = useState()
 
-
+  const handleResize = () => {
+    setConstraints(container.current.getBoundingClientRect())
+  }
 
   useEffect(() => {
-    // function handleResize() {
-    //   // if (window.matchMedia("(min-width: 1436px)")) {
-    //   //   setWidth(1436)
-    //   // } else if (window.matchMedia("(min-width: 960px)")) {
-    //   //   setWidth(960)
-    //   // } else if (window.matchMedia("(min-width: 704px)")) {
-    //   //   setWidth(704)
-    //   // } else if (window.matchMedia("(min-width: 416px)")) {
-    //   //   setWidth(416)
-    //   // } else{
-    //   //   setWidth(document.body.clientWidth)
-    //   // }
-    //   setWidth(props.ref.clientWidth)
-    //   console.log(width)
-    // }
-    // handleResize()
-    // window.addEventListener('resize', handleResize)
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
-    const cw = document.body.clientWidth
-    const ch = 200
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+
+  useEffect(() => {
+    const engine = Engine.create({})
+    setEngine(engine)
 
     const render = Render.create({
-      element: scene.current,
-      engine: engine.current,
+      element: container.current,
+      canvas: canvas.current,
+      engine: engine,
       options: {
-        width: 1000,
-        height: 200,
         wireframes: false,
-        background: 'black'
-      }
+        background: "black",
+      },
     })
 
-    World.add(engine.current.world, [
-      Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
-      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true })
-    ])
+    const floor = Bodies.rectangle(0, 0, 0, STATIC_DENSITY, {
+      isStatic: true,
+      render: {
+        fillStyle: 'blue',
+      },
+    })
 
-    Engine.run(engine.current)
+    World.add(engine.world, [floor])
+
+    Engine.run(engine)
     Render.run(render)
+
+    setConstraints(container.current.getBoundingClientRect())
+    setScene(render)
 
     return () => {
       Render.stop(render)
-      Render.setPixelRatio(render, 'auto')
       World.clear(engine.current.world)
       Engine.clear(engine.current)
       render.canvas.remove()
@@ -68,18 +64,47 @@ const MatterHeader = (props: Props) => {
       render.context = null
       render.textures = {}
     }
-  }, [props.ref])
+  }, [])
+
+  useEffect(() => {
+    if (constraints) {
+      let { width, height } = constraints
+
+      // Dynamically update canvas and bounds
+      scene.bounds.max.x = width
+      scene.bounds.max.y = height
+      scene.options.width = width
+      scene.options.height = height
+      scene.canvas.width = width
+      scene.canvas.height = height
+
+      // Dynamically update floor
+      const floor = scene.engine.world.bodies[0]
+
+      Body.setPosition(floor, {
+        x: width / 2,
+        y: height + STATIC_DENSITY / 2,
+      })
+
+      Body.setVertices(floor, [
+        { x: 0, y: height },
+        { x: width, y: height },
+        { x: width, y: height + STATIC_DENSITY },
+        { x: 0, y: height + STATIC_DENSITY },
+      ])
+    }
+  }, [scene, constraints])
 
   const handleDown = () => {
-    isPressed.current = true
+    setPressed(true)
   }
 
   const handleUp = () => {
-    isPressed.current = false
+    setPressed(false)
   }
 
   const handleAddCircle = e => {
-    if (isPressed.current) {
+    if (isPressed) {
       const ball = Bodies.circle(
         e.clientX,
         e.clientY,
@@ -89,22 +114,28 @@ const MatterHeader = (props: Props) => {
           restitution: 0.9,
           friction: 0.005,
           render: {
-            fillStyle: '#0000ff'
-          }
-        })
-      World.add(engine.current.world, [ball])
+            fillStyle: "#0000ff",
+          },
+        }
+      )
+      World.add(engine.world, [ball])
     }
   }
 
   return (
     <div
+      ref={container}
       onMouseDown={handleDown}
       onMouseUp={handleUp}
       onMouseMove={handleAddCircle}
+      css={css`
+        width: 100%;
+        height: 200px;
+      `}
     >
-      <div ref={scene} style={{ width: '100%', height: '100%' }} />
+      <canvas ref={canvas} />
     </div>
   )
 }
 
-export default MatterHeader;
+export default MatterHeader
