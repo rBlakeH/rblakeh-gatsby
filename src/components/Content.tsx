@@ -9,8 +9,11 @@ type props = {
 export const Content = (Props: props) => {
     
     const div = css`
-    // border: 5px solid blue;
-    height: 300px
+    border: 5px solid blue;
+    // display flex;
+    // align-items: center;
+    // align-content: center;
+    // // height: 300px
     `
 
     const contentDiv = css`

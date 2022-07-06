@@ -7,9 +7,15 @@ type props = {
 export const CenterImage = ({imagePath}: props) => {
 
     const div = css`
+        // border: 5px solid yellow;
         display: flex;
         width: 100%;
         justify-content: center;
+        
+        img {
+            width: 90%;
+            border-radius: 10px;
+        }
     `
 
     return(

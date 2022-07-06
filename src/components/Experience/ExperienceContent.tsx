@@ -7,9 +7,9 @@ import MatterHeader from "../MatterHeader"
 export const ExperienceContent = () => (
     <React.Fragment>
         {
-            experienceData.map((x, i) =>
-                (i + 1) % 2 ? <Content right={(<Experience job={x}></Experience>)} left={null} />
-                    : <Content right={null} left={(<Experience job={x}></Experience>)} />
+            experienceData.map((j, i) =>
+                (i + 1) % 2 ? <Content right={(<Experience job={j}/>)} left={null} />
+                    : <Content right={null} left={(<Experience job={j}/>)} />
             )           
         }
     </React.Fragment>
