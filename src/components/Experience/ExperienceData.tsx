@@ -13,7 +13,7 @@ export const experienceData: jobs = [
     {
         company: "ITEAM CONSULTING",
         title: "JUNIOR SOFTWARE ENGINEER",
-        dates: "FEBRUARY 2021 - APRIL 2021",
+        dates: " February 2021 - April 2022",
         description: "Working with the software consulting team to create end to end business solutions across a wide range of technologies and disciplines.",
         icon: "/images/iteam.png",
         alt: "iTeam Consulting logo"

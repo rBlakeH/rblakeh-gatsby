@@ -2,25 +2,32 @@ import React, { Children, Component } from "react"
 import { css, cx } from '@emotion/css'
 
 type props = {
-    isRight: boolean,
     right: any,
     left: any
 }
 
 export const Content = (Props: props) => {
+    
+    const div = css`
+    // border: 5px solid blue;
+    height: 300px
+    `
+
     const contentDiv = css`
+    margin-top: 10%;
+    align-items: baseline;
     display: inline-block;
-    border: 5px solid red;
+    // border: 5px solid red;
     width: 50%;
-    @media (max-width: 481px){
+    @media (max-width:  768px){
         display: block;
         width: 100%;
     }
     `
     return (
-        <>
+        <div className={div}>
             <div className={contentDiv}>{Props.right}</div>
             <div className={contentDiv}>{Props.left}</div>
-        </>
+        </div>
     )
 }

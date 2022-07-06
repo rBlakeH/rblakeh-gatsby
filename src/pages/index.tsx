@@ -11,15 +11,27 @@ import { Children } from "react"
 import { experienceData, job } from "../components/Experience/ExperienceData"
 import { Experience } from "../components/Experience/Expreience"
 import { ExperienceContent } from "../components/Experience/ExperienceContent"
+import Header from "../components/header"
+import { Title } from "../components/Experience/Title"
+import { SectionHeader } from "../components/SectionHeader"
+import { Education } from "../components/Education/Education"
+import { EducationContent } from "../components/Education/EducationContent"
 
 const IndexPage = () => {
   const contentRef = useRef<HTMLElement>()
   return (
-    <CenterContent ref={contentRef}>
-      <MatterHeader ref={contentRef} />
-      <h1>RblakeH.com</h1>
-      <ExperienceContent />
-    </CenterContent>
+    <>
+      {/* <MatterHeader ref={null} /> */}
+      <Title />
+      <SectionHeader text={"Experience"} />
+      <CenterContent ref={contentRef}>
+        <ExperienceContent />
+      </CenterContent>
+      <SectionHeader text={"Education"} />
+      <CenterContent ref={contentRef}>
+        <EducationContent/>
+      </CenterContent>
+    </>
   )
 }
 export default IndexPage

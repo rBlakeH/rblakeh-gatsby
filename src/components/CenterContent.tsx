@@ -7,9 +7,10 @@ type Props ={
 }
 
 const center = css`
-border: 5px solid black;
+// border: 5px solid black;
 margin: auto;
-width: 100%;
+width: 350px;
+
 @media (min-width: 480px){
   width: 416px;
 }
@@ -21,6 +22,7 @@ width: 100%;
 }
 @media (min-width: 1500px){
   width: 1436px;
+
 }
 `
 export const CenterContent = (props: Props) => {

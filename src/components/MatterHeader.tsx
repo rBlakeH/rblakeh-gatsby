@@ -41,10 +41,10 @@ const MatterHeader = (props: Props) => {
       element: scene.current,
       engine: engine.current,
       options: {
-        width: 1000,
+        width: 1430,
         height: 200,
         wireframes: false,
-        background: 'black'
+        background: 'transparent'
       }
     })
 
