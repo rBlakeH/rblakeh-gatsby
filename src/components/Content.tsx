@@ -9,7 +9,7 @@ type props = {
 export const Content = (Props: props) => {
     
     const div = css`
-    border: 5px solid blue;
+    // border: 5px solid blue;
     // display flex;
     // align-items: center;
     // align-content: center;

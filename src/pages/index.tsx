@@ -23,7 +23,7 @@ const IndexPage = () => {
   const contentRef = useRef<HTMLElement>()
   return (
     <>
-      {/* <MatterHeader ref={null} /> */}
+      <MatterHeader ref={null} />
       <Title />
       <SectionHeader text={"Experience"} />
       <CenterContent ref={contentRef}>

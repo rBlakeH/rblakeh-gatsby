@@ -3,7 +3,9 @@ import { css } from "@emotion/css";
 import { SectionHeader } from "./SectionHeader";
 import { Content } from "./Content";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faGithubSquare } from '@fortawesome//free-brands-svg-icons'
+import { faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
 
 export const Contact = () => {
     const div = css`
@@ -17,26 +19,24 @@ export const Contact = () => {
         margin-top: 0px;
         text-align: center;
     `
+    const a = css`
+        color: inherit;
+    `
 
     return (
         <div>
             <div className={div}>
-                <SectionHeader text={"Contact"} />
-            </div>
-            <div className={innerDiv}>
-                <h3>Email</h3>
-                <a href="mailto:richardblakehampton@gmail.com">richardblakehampton@gmail.com</a>
-            </div>
-            <div className={innerDiv}>
-                <h3>Phone</h3>
-                <p>(940) 453-7217</p>
-
+                <SectionHeader text={"Contacts"} />
             </div>
             <div className={div}>
-                <a href="https://www.linkedin.com/in/blake-hampton-b2847a192/">
-                    <FontAwesomeIcon icon={faLinkedin} size="3x" href="https://www.linkedin.com/in/blake-hampton-b2847a192/" />
+                
+                <a href="https://www.linkedin.com/in/blake-hampton-b2847a192/" className={a}>
+                    <FontAwesomeIcon icon={faLinkedin} size="3x"/>
                 </a>
-                <a href="https://github.com/rBlakeH">
+                <a href="mailto:richardblakehampton@gmail.com" className={a}>
+                    <FontAwesomeIcon icon={faEnvelope} size="3x"/>
+                </a>
+                <a href="https://github.com/rBlakeH" className={a}>
                     <FontAwesomeIcon icon={faGithubSquare} size="3x" />
                 </a>
             </div>
