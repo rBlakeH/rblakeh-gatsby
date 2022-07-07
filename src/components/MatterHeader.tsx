@@ -35,14 +35,14 @@ const MatterHeader = (props: Props) => {
     // window.addEventListener('resize', handleResize)
 
     const cw = document.body.clientWidth
-    const ch = 200
+    const ch = document.body.clientHeight / 10
 
     const render = Render.create({
       element: scene.current,
       engine: engine.current,
       options: {
-        width: 1430,
-        height: 200,
+        width: cw,
+        height: ch,
         wireframes: false,
         background: 'transparent'
       }
@@ -80,16 +80,21 @@ const MatterHeader = (props: Props) => {
 
   const handleAddCircle = e => {
     if (isPressed.current) {
-      const ball = Bodies.circle(
+      const ball = Bodies.rectangle(
         e.clientX,
         e.clientY,
-        10 + Math.random() * 30,
+        51.2, 51.2,
         {
           mass: 10,
           restitution: 0.9,
           friction: 0.005,
           render: {
-            fillStyle: '#0000ff'
+            fillStyle: '#0000ff',
+            sprite: {
+              texture: '/images/flag.png',
+              xScale: .1,
+              yScale: .1,
+            }
           }
         })
       World.add(engine.current.world, [ball])

@@ -18,12 +18,14 @@ import { Education } from "../components/Education/Education"
 import { EducationContent } from "../components/Education/EducationContent"
 import { ProjecetContent } from "../components/Projects/ProjectContent"
 import { Contact } from "../components/Contact"
+import { BallPit } from "../components/BallPit"
 
 const IndexPage = () => {
   const contentRef = useRef<HTMLElement>()
   return (
     <>
       <MatterHeader ref={null} />
+      <BallPit/>
       <Title />
       <SectionHeader text={"Experience"} />
       <CenterContent ref={contentRef}>
