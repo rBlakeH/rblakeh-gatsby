@@ -17,6 +17,7 @@ import { SectionHeader } from "../components/SectionHeader"
 import { Education } from "../components/Education/Education"
 import { EducationContent } from "../components/Education/EducationContent"
 import { ProjecetContent } from "../components/Projects/ProjectContent"
+import { Contact } from "../components/Contact"
 
 const IndexPage = () => {
   const contentRef = useRef<HTMLElement>()
@@ -35,6 +36,9 @@ const IndexPage = () => {
       <SectionHeader text={"Projects"} />
       <CenterContent ref={contentRef}>
         <ProjecetContent/>
+      </CenterContent>
+      <CenterContent ref={contentRef}>
+        <Contact/>
       </CenterContent>
     </>
   )
