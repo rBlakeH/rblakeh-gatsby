@@ -1,14 +1,41 @@
-import React, { Component, useEffect, useRef } from 'react'
+import React, { Component, useEffect, useRef, useState } from 'react'
 import { Engine, Render, Bodies, World } from 'matter-js'
 
-const MatterHeader = () => {
+type Props ={
+  ref: any
+}
+
+const MatterHeader = (props: Props) => {
   const scene = useRef()
+  const contentRef = useRef(null)
   const isPressed = useRef(false)
   const engine = useRef(Engine.create())
 
+  const [width, setWidth] = useState(0)
+
+
+
   useEffect(() => {
+    // function handleResize() {
+    //   // if (window.matchMedia("(min-width: 1436px)")) {
+    //   //   setWidth(1436)
+    //   // } else if (window.matchMedia("(min-width: 960px)")) {
+    //   //   setWidth(960)
+    //   // } else if (window.matchMedia("(min-width: 704px)")) {
+    //   //   setWidth(704)
+    //   // } else if (window.matchMedia("(min-width: 416px)")) {
+    //   //   setWidth(416)
+    //   // } else{
+    //   //   setWidth(document.body.clientWidth)
+    //   // }
+    //   setWidth(props.ref.clientWidth)
+    //   console.log(width)
+    // }
+    // handleResize()
+    // window.addEventListener('resize', handleResize)
+
     const cw = document.body.clientWidth
-    const ch = document.body.clientHeight
+    const ch = document.body.clientHeight / 10
 
     const render = Render.create({
       element: scene.current,
@@ -33,6 +60,7 @@ const MatterHeader = () => {
 
     return () => {
       Render.stop(render)
+      Render.setPixelRatio(render, 'auto')
       World.clear(engine.current.world)
       Engine.clear(engine.current)
       render.canvas.remove()
@@ -40,7 +68,7 @@ const MatterHeader = () => {
       render.context = null
       render.textures = {}
     }
-  }, [])
+  }, [props.ref])
 
   const handleDown = () => {
     isPressed.current = true
@@ -52,16 +80,21 @@ const MatterHeader = () => {
 
   const handleAddCircle = e => {
     if (isPressed.current) {
-      const ball = Bodies.circle(
+      const ball = Bodies.rectangle(
         e.clientX,
         e.clientY,
-        10 + Math.random() * 30,
+        51.2, 51.2,
         {
           mass: 10,
           restitution: 0.9,
           friction: 0.005,
           render: {
-            fillStyle: '#0000ff'
+            fillStyle: '#0000ff',
+            sprite: {
+              texture: '/images/flag.png',
+              xScale: .1,
+              yScale: .1,
+            }
           }
         })
       World.add(engine.current.world, [ball])
