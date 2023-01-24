@@ -33,9 +33,14 @@ export const Contact = () => {
                 <a href="https://www.linkedin.com/in/blake-hampton-b2847a192/" className={a}>
                     <FontAwesomeIcon icon={faLinkedin} size="3x"/>
                 </a>
-                <a href="mailto:richardblakehampton@gmail.com" className={a}>
+
+                {/* LOL you found me! Then you can email me */}
+
+                {/* <a href="mailto:richardblakehampton@gmail.com" className={a}>
                     <FontAwesomeIcon icon={faEnvelope} size="3x"/>
-                </a>
+                </a> */}
+
+
                 <a href="https://github.com/rBlakeH" className={a}>
                     <FontAwesomeIcon icon={faGithubSquare} size="3x" />
                 </a>
