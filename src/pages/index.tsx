@@ -16,7 +16,7 @@ import { Title } from "../components/Experience/Title"
 import { SectionHeader } from "../components/SectionHeader"
 import { Education } from "../components/Education/Education"
 import { EducationContent } from "../components/Education/EducationContent"
-import { ProjecetContent } from "../components/Projects/ProjectContent"
+import { ProjectContent } from "../components/Projects/ProjectContent"
 import { Contact } from "../components/Contact"
 // import { BallPit } from "../components/BallPit"
 
@@ -24,23 +24,23 @@ const IndexPage = () => {
   const contentRef = useRef<HTMLElement>()
   return (
     <>
-     <MatterHeader ref={null} />
+      {/* <MatterHeader ref={null} /> */}
       {/* <BallPit/> */}
       <Title />
-      <SectionHeader text={"Experience"} />
       <CenterContent ref={contentRef}>
+        <SectionHeader text={"Experience"} />
         <ExperienceContent />
       </CenterContent>
-      <SectionHeader text={"Education"} />
       <CenterContent ref={contentRef}>
-        <EducationContent/>
-      </CenterContent>
-      <SectionHeader text={"Projects"} />
-      <CenterContent ref={contentRef}>
-        <ProjecetContent/>
+        <SectionHeader text={"Education"} />
+        <EducationContent />
       </CenterContent>
       <CenterContent ref={contentRef}>
-        <Contact/>
+        <SectionHeader text={"Projects"} />
+        <ProjectContent />
+      </CenterContent>
+      <CenterContent ref={contentRef}>
+        <Contact />
       </CenterContent>
     </>
   )

@@ -3,7 +3,7 @@ import React from "react"
 import { projectsData } from "./ProjectsData"
 import { Projcet } from "./Projcet"
 
-export const ProjecetContent = () => (
+export const ProjectContent = () => (
     <React.Fragment>
         {
             projectsData.map((p, i) =>

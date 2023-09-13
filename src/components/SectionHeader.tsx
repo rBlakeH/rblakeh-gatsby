@@ -5,15 +5,15 @@ type  Props = {
 }
 
 export const SectionHeader = ({text}: Props) =>{
-    const div = css`
-        display: flex;
-        justify-content: flex-start;;
-        h1{
-            font-size: 5vw;
-        }
-    `
+    // const div = css`
+    //     display: flex;
+    //     justify-content: flex-start;;
+    //     h1{
+    //         font-size: 5vw;
+    //     }
+    // `
     return(
-        <div className={div}>
+        <div>
             <h1>{text}</h1>
         </div>
     )
